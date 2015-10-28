@@ -1,4 +1,4 @@
-package filipepaladino.appaula.view;
+package filipepaladino.appaula.view.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
