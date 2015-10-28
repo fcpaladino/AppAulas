@@ -17,7 +17,7 @@ import filipepaladino.appaula.model.ModelMercadoria;
 
 import java.util.ArrayList;
 
-public class HomeMercadoria extends AppCompatActivity {
+public class Home extends AppCompatActivity {
 
     private EditText edxSearch;
 
@@ -85,12 +85,12 @@ public class HomeMercadoria extends AppCompatActivity {
     private void menuDeletarTodos() {
         if(controller.deleteAll()){
             updateListView();
-            Toast.makeText(HomeMercadoria.this, "Todos os itens removidos.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Home.this, "Todos os itens removidos.", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void menuCadastrar() {
-        Intent cadastro = new Intent(this, CadastrarMercadoria.class);
+        Intent cadastro = new Intent(this, Cadastrar.class);
         cadastro.putExtra("action", "create");
         startActivityForResult(cadastro, 100);
     }
@@ -100,12 +100,12 @@ public class HomeMercadoria extends AppCompatActivity {
 
         switch (status){
             case 100:
-                Toast.makeText(HomeMercadoria.this, "Cadastrado com sucesso.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Home.this, "Cadastrado com sucesso.", Toast.LENGTH_SHORT).show();
                 break;
 
             case 200:
                 //int registro = intent.getExtras().getInt("id");
-                Toast.makeText(HomeMercadoria.this, "Atualizado com sucesso.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Home.this, "Atualizado com sucesso.", Toast.LENGTH_SHORT).show();
                 break;
 
         }

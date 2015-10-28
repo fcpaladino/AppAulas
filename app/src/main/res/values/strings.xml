@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">App Android</string>
-
+    <string name="app_name">Controle Mercadoria</string>
     <string name="action_settings">Configuração</string>
+    <string name="title_activity_cadastrar">Cadastrar</string>
 </resources>

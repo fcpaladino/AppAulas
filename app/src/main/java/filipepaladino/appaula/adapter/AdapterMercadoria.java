@@ -14,7 +14,7 @@ import android.widget.Toast;
 import filipepaladino.appaula.R;
 import filipepaladino.appaula.controller.ControllerMercadoria;
 import filipepaladino.appaula.model.ModelMercadoria;
-import filipepaladino.appaula.view.CadastrarMercadoria;
+import filipepaladino.appaula.view.Cadastrar;
 
 import java.util.ArrayList;
 
@@ -75,7 +75,7 @@ public class AdapterMercadoria extends BaseAdapter {
 
         holder.listItem.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent tela = new Intent(activity, CadastrarMercadoria.class);
+                Intent tela = new Intent(activity, Cadastrar.class);
                 tela.putExtra("action", "edit");
                 tela.putExtra("id", String.valueOf(item.getId()));
                 activity.startActivityForResult(tela, 200);

@@ -11,7 +11,7 @@ import filipepaladino.appaula.R;
 import filipepaladino.appaula.controller.ControllerMercadoria;
 import filipepaladino.appaula.model.ModelMercadoria;
 
-public class CadastrarMercadoria extends AppCompatActivity {
+public class Cadastrar extends AppCompatActivity {
 
     private TextView edxId;
     private TextView edxNome;
