@@ -1,1 +1,1 @@
-# Projeto de controle de Mecadorias.
+# Projeto de controle de Mercadorias.
