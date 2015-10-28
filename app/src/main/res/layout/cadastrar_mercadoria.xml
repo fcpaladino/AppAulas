@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.filipepaladino.applistacompra.views.Cadastrar">
+    tools:context="filipepaladino.appaula.view.Cadastrar">
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,8 +56,8 @@
         android:layout_height="wrap_content"
         android:text="Cadastrar"
         android:id="@+id/button_cadastrar"
-        android:background="@drawable/button_green"
-        android:textColor="#f3f3f3"
+        android:background="@drawable/button_active"
+        android:textColor="@color/colorInactive"
         android:width="100dp"
         android:height="20dp"
         android:onClick="actionStore"
@@ -71,8 +71,8 @@
         android:layout_height="wrap_content"
         android:text="Atualizar"
         android:id="@+id/button_atualizar"
-        android:background="@drawable/button_green"
-        android:textColor="#f3f3f3"
+        android:background="@drawable/button_active"
+        android:textColor="@color/colorInactive"
         android:width="100dp"
         android:height="20dp"
         android:onClick="actionUpdate"
@@ -88,8 +88,8 @@
         android:layout_height="wrap_content"
         android:text="Voltar"
         android:id="@+id/button_voltar"
-        android:background="@drawable/button_gray"
-        android:textColor="#59d535"
+        android:background="@drawable/button_inactive"
+        android:textColor="@color/colorActive"
         android:width="100dp"
         android:height="20dp"
         android:onClick="actionCancel"
