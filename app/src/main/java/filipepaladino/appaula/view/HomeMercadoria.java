@@ -10,10 +10,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.filipepaladino.applistacompra.R;
-import com.filipepaladino.applistacompra.adapter.AdapterMercadoria;
-import com.filipepaladino.applistacompra.controller.ControllerMercadoria;
-import com.filipepaladino.applistacompra.models.ModelMercadoria;
+import filipepaladino.appaula.R;
+import filipepaladino.appaula.adapter.AdapterMercadoria;
+import filipepaladino.appaula.controller.ControllerMercadoria;
+import filipepaladino.appaula.model.ModelMercadoria;
 
 import java.util.ArrayList;
 
