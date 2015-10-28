@@ -1,1 +1,1 @@
-# Aplicativos devenvolvidos em sala de aula.
+# Aplicativos desenvolvidos em sala.
