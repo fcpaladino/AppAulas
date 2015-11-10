@@ -132,6 +132,6 @@ public class Cadastrar extends AppCompatActivity {
     }
 
 
-
-
+    public void actionGetImage(View view) {
+    }
 }

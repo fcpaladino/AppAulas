@@ -113,8 +113,11 @@ public class Home extends AppCompatActivity {
     }
 
     private void updateListView(){
-        adapter = new AdapterMercadoria(this, controller.all());
-        lsvMercadoria.setAdapter(adapter);
+        //adapter = new AdapterMercadoria(this, controller.all());
+        //lsvMercadoria.setAdapter(adapter);
+
+        adapter.notifyDataSetChanged();
+
     }
 
     public void searchMercadoria(View view) {
