@@ -3,6 +3,7 @@ package filipepaladino.appaula.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,42 +49,41 @@ public class AdapterMercadoria extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         ViewHolder holder;
 
         View v                          = convertView;
         final ModelMercadoria item      = listamercadoria.get(position);
+        final int posicao               = position;
 
         if (v == null) {
-
             LayoutInflater inflater = activity.getLayoutInflater();
             v = inflater.inflate(R.layout.lista_mercadoria_item, null, true);
 
             holder = new ViewHolder();
+
             holder.itemId       = (TextView) v.findViewById(R.id.itemId);
             holder.texto1       = (TextView) v.findViewById(R.id.texto1);
             holder.texto2       = (TextView) v.findViewById(R.id.texto2);
-            //holder.imagem       = (ImageView) v.findViewById(R.id.itemFoto);
             holder.btnDeletar   = (Button) v.findViewById(R.id.btnItemDelete);
             holder.listItem     = (RelativeLayout) v.findViewById(R.id.listItem);
-
-            holder.itemId.setText( String.valueOf(item.getId()) );
-            holder.texto1.setText( String.valueOf(item.getId()) +" - "+ item.getNome() );
-            holder.texto2.setText( String.valueOf(item.getPreco()) );
-
         } else {
             holder = (ViewHolder) v.getTag();
         }
 
+        holder.itemId.setText( String.valueOf(item.getId()) );
+        holder.texto1.setText( String.valueOf(item.getId()) +" - "+ item.getNome() );
+        holder.texto2.setText( String.valueOf(item.getPreco()) );
 
         holder.listItem.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent tela = new Intent(activity, Cadastrar.class);
                 tela.putExtra("action", "edit");
                 tela.putExtra("id", String.valueOf(item.getId()));
+
                 activity.startActivityForResult(tela, 200);
             }
         });
+
         holder.btnDeletar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 long codigo = item.getId();
@@ -93,15 +93,15 @@ public class AdapterMercadoria extends BaseAdapter {
 
                 if(result){
                     listamercadoria.remove(item);
+
                     notifyDataSetChanged();
 
-                    Toast.makeText(activity, "Item "+codigo+" deletado.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(activity, "Item " + item.getId() + " deletado. Posição:" + posicao, Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(activity, "Erro ao deletar o item.", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
 
         v.setTag(holder);
 
@@ -113,7 +113,6 @@ public class AdapterMercadoria extends BaseAdapter {
         TextView texto1;
         TextView texto2;
         Button btnDeletar;
-        //ImageView imagem;
         RelativeLayout listItem;
     }
 }

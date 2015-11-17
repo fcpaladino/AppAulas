@@ -21,11 +21,14 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
 
+    // aulas-lab/end-end
+
     private EditText edxSearch;
     private ListView lsvMercadoria;
     private AdapterMercadoria adapter;
     private ArrayList<ModelMercadoria> listamercadoria;
     private ControllerMercadoria controller;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class Home extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -66,11 +70,13 @@ public class Home extends AppCompatActivity {
         searchMercadoria("");
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home_mercadoria, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -87,26 +93,38 @@ public class Home extends AppCompatActivity {
 
             case R.id.menu_cria_registro:
                 controller.createRegisters();
+                updateLista();
                 break;
 
             case R.id.menu_reset_table:
                 controller.reset();
+                updateLista();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+
     private void menuDeletarTodos() {
         if(controller.deleteAll()){
             Toast.makeText(Home.this, "Todos os itens removidos.", Toast.LENGTH_SHORT).show();
+            updateLista();
         }
     }
+
 
     private void menuCadastrar() {
         Intent cadastro = new Intent(this, Cadastrar.class);
         cadastro.putExtra("action", "create");
         startActivityForResult(cadastro, 100);
+    }
+
+
+    private void updateLista(){
+        listamercadoria.clear();
+        listamercadoria.addAll(controller.all());
+        adapter.notifyDataSetChanged();
     }
 
     private void searchMercadoria(String nome) {
