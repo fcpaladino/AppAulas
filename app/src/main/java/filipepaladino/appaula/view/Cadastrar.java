@@ -1,11 +1,26 @@
 package filipepaladino.appaula.view;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import filipepaladino.appaula.R;
 import filipepaladino.appaula.controller.ControllerMercadoria;
@@ -18,6 +33,8 @@ public class Cadastrar extends AppCompatActivity {
     private TextView edxPreco;
     private TextView edxDescricao;
     private TextView edxFabricante;
+    private ImageView imvFoto;
+    private byte[] foto = null;
 
     private Button atualizar;
     private Button cadastrar;
@@ -36,6 +53,7 @@ public class Cadastrar extends AppCompatActivity {
         edxPreco        = (TextView)findViewById(R.id.edxPreco);
         edxDescricao    = (TextView)findViewById(R.id.edxDescricao);
         edxFabricante   = (TextView)findViewById(R.id.edxFabricante);
+        imvFoto         = (ImageView)findViewById(R.id.imgview);
 
         controller  = new ControllerMercadoria(this);
 
@@ -63,22 +81,33 @@ public class Cadastrar extends AppCompatActivity {
                 edxPreco.setText( String.valueOf(item.getPreco()) );
                 edxDescricao.setText( String.valueOf(item.getDescricao()) );
                 edxFabricante.setText( String.valueOf(item.getFabricante()) );
+                imvFoto.setImageBitmap(item.getFotoAsBitmap());
 
                 enableButtonUpdate();
                 break;
         }
 
+
+
+        imvFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(
+                        MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 1);
+            }
+        });
     }
 
 
     // Cria um novo registro
     public void actionStore(View view) {
-
         model   = new ModelMercadoria();
         model.setNome(edxNome.getText().toString());
         model.setDescricao(edxDescricao.getText().toString());
         model.setFabricante(edxFabricante.getText().toString());
         model.setPreco(Double.parseDouble(edxPreco.getText().toString()));
+        model.setFoto(recuperaFotoAsByteArray());
 
         int id = (int)controller.insert(model);
 
@@ -88,6 +117,7 @@ public class Cadastrar extends AppCompatActivity {
         home.putExtra("id", id);
         setResult(100, home);
         finish();
+
     }
 
     // Atualiza o registro
@@ -99,6 +129,8 @@ public class Cadastrar extends AppCompatActivity {
         model.setDescricao(edxDescricao.getText().toString());
         model.setFabricante(edxFabricante.getText().toString());
         model.setPreco(Double.parseDouble(edxPreco.getText().toString()));
+
+        model.setFoto(recuperaFotoAsByteArray());
 
         controller.update(model);
         controller.close();
@@ -114,7 +146,7 @@ public class Cadastrar extends AppCompatActivity {
     }
 
     // habilita o botão cadastrar, desabilita o botão atualizar
-    private void enableButtonStore(){
+    private void enableButtonStore() {
         atualizar = (Button)findViewById(R.id.button_atualizar);
         atualizar.setVisibility(View.INVISIBLE);
 
@@ -131,7 +163,32 @@ public class Cadastrar extends AppCompatActivity {
         cadastrar.setVisibility(View.INVISIBLE);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode== RESULT_OK && data != null){
+            Bundle extras = data.getExtras();
+            Bitmap bitMap = (Bitmap) extras.get("data");
 
-    public void actionGetImage(View view) {
+            imvFoto.setImageBitmap(bitMap);
+        }
     }
+
+
+    private byte[] recuperaFotoAsByteArray() {
+        try {
+            BitmapDrawable bitmapDrawable = ((BitmapDrawable) imvFoto.getDrawable());
+            Bitmap bitmap = bitmapDrawable.getBitmap();
+
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+
+            return stream.toByteArray();
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+
+
 }

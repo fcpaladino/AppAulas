@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class ControllerMercadoria extends SQLiteOpenHelper {
 
-    private static final String BANCO    = "AppMercadoria.db";
+    private static final String BANCO    = "AppMercadoria_one.db";
     private static final String TABLE    = "lista_mercadoria";
     private static final Integer VERSAO  = 1;
     private Cursor cursor;
@@ -25,6 +25,7 @@ public class ControllerMercadoria extends SQLiteOpenHelper {
             "descricao TEXT, " +
             "fabricante TEXT, " +
             "ativo INTEGER DEFAULT 1, " +
+            "foto BLOB, " +
             "preco REAL" +
             ");";
 
@@ -77,6 +78,7 @@ public class ControllerMercadoria extends SQLiteOpenHelper {
         values.put("preco",     item.getPreco());
         values.put("descricao", item.getDescricao());
         values.put("fabricante",item.getFabricante());
+        values.put("foto",      item.getFoto());
 
         int cod = (int)db.insert(TABLE, null, values);
         db.close();
@@ -93,7 +95,7 @@ public class ControllerMercadoria extends SQLiteOpenHelper {
         values.put("descricao", item.getDescricao());
         values.put("fabricante", item.getFabricante());
 
-        db.update(TABLE, values, "id = ?", new String[] { String.valueOf(item.getId()) });
+        db.update(TABLE, values, "id = ?", new String[]{String.valueOf(item.getId())});
         db.close();
     }
 
@@ -111,7 +113,7 @@ public class ControllerMercadoria extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         cursor = db.query(TABLE,
-                new String[]{"id", "nome", "preco", "descricao", "fabricante"},
+                new String[]{"id", "nome", "preco", "descricao", "fabricante", "foto"},
                 "id = ?",
                 new String[]{String.valueOf(id)},
                 null, null, null, null);
@@ -125,6 +127,7 @@ public class ControllerMercadoria extends SQLiteOpenHelper {
         item.setDescricao(columnString("descricao"));
         item.setFabricante(columnString("fabricante"));
         item.setPreco(columnDouble("preco"));
+        item.setFoto(columnBlob("foto"));
 
         return item;
     }
@@ -144,6 +147,7 @@ public class ControllerMercadoria extends SQLiteOpenHelper {
                                 item.setDescricao(columnString("descricao"));
                                 item.setFabricante(columnString("fabricante"));
                                 item.setPreco(columnDouble("preco"));
+                                item.setFoto(columnBlob("foto"));
 
                 retorno.add(item);
             } while (cursor.moveToNext());
@@ -167,6 +171,7 @@ public class ControllerMercadoria extends SQLiteOpenHelper {
                                 item.setDescricao(columnString("descricao"));
                                 item.setFabricante(columnString("fabricante"));
                                 item.setPreco(columnDouble("preco"));
+                item.setFoto(columnBlob("foto"));
 
                 retorno.add(item);
             } while (cursor.moveToNext());
@@ -179,6 +184,10 @@ public class ControllerMercadoria extends SQLiteOpenHelper {
 
 
 
+
+    private byte[] columnBlob(String column){
+        return cursor.getBlob(cursor.getColumnIndex(column));
+    }
 
     private int columnInt(String column){
         return cursor.getInt(cursor.getColumnIndex(column));

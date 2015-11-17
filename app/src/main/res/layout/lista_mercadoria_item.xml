@@ -18,24 +18,20 @@ android:id="@+id/listItem">
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:id="@+id/texto1"
+    android:text="Texto 1"
     android:layout_alignParentTop="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="1dp"
-    android:text="Texto 1" />
+    android:layout_toRightOf="@+id/itemId"
+    android:layout_toEndOf="@+id/itemId" />
 
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceSmall"
     android:id="@+id/texto2"
+    android:text="Texto 2"
     android:layout_below="@+id/texto1"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="1dp"
-    android:layout_marginBottom="0dp"
-    android:text="Texto 2" />
+    android:layout_toRightOf="@+id/itemId"
+    android:layout_toEndOf="@+id/itemId" />
 
 <Button
     style="?android:attr/buttonStyleSmall"
@@ -49,4 +45,5 @@ android:id="@+id/listItem">
     android:layout_alignTop="@+id/texto1"
     android:layout_alignParentRight="true"
     android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

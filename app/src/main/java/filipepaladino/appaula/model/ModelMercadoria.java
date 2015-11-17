@@ -1,5 +1,10 @@
 package filipepaladino.appaula.model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.sql.Blob;
+
 public class ModelMercadoria {
 
     private long id;
@@ -8,6 +13,9 @@ public class ModelMercadoria {
     private Integer ativo;
     private String descricao;
     private String fabricante;
+    private byte[] foto;
+    private Bitmap fotoAsBitmap;
+
 
     public ModelMercadoria() {}
 
@@ -58,6 +66,23 @@ public class ModelMercadoria {
 
     public void setFabricante(String fabricante) {
         this.fabricante = fabricante;
+    }
+
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+
+    public Bitmap getFotoAsBitmap() {
+        if (foto == null || foto.length == 0) {
+            return null;
+        }
+        return BitmapFactory.decodeByteArray(foto, 0, foto.length);
     }
 
 }

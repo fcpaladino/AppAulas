@@ -151,22 +151,15 @@
         android:visibility="gone"
         />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Imagem"
-        android:id="@+id/btnImagem"
+
+    <ImageView
+        android:background="@android:color/darker_gray"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imgview"
         android:layout_below="@+id/edxFabricante"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="34dp"
-        android:background="@drawable/button_inactive"
-        android:textColor="@color/colorActive"
-        android:width="100dp"
-        android:height="10dp"
-        android:onClick="actionGetImage"
-        />
-
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

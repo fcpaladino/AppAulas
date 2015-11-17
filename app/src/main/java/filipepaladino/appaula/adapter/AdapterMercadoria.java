@@ -2,11 +2,13 @@ package filipepaladino.appaula.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +63,7 @@ public class AdapterMercadoria extends BaseAdapter {
             holder.itemId       = (TextView) v.findViewById(R.id.itemId);
             holder.texto1       = (TextView) v.findViewById(R.id.texto1);
             holder.texto2       = (TextView) v.findViewById(R.id.texto2);
+            //holder.imagem       = (ImageView) v.findViewById(R.id.itemFoto);
             holder.btnDeletar   = (Button) v.findViewById(R.id.btnItemDelete);
             holder.listItem     = (RelativeLayout) v.findViewById(R.id.listItem);
 
@@ -110,6 +113,7 @@ public class AdapterMercadoria extends BaseAdapter {
         TextView texto1;
         TextView texto2;
         Button btnDeletar;
+        //ImageView imagem;
         RelativeLayout listItem;
     }
 }

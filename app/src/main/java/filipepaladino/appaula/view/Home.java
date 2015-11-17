@@ -3,6 +3,9 @@ package filipepaladino.appaula.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,11 +43,44 @@ public class Home extends AppCompatActivity {
 
         lsvMercadoria.setAdapter(adapter);
 
+
+        edxSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                listamercadoria.clear();
+                listamercadoria.addAll(controller.search(edxSearch.getText().toString()));
+                adapter.notifyDataSetChanged();
+
+            }
+        });
+
+
+
+        /*edxSearch.setOnKeyListener(new EditText.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                return false;
+            }
+        });*/
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        listamercadoria.clear();
+        listamercadoria.addAll(controller.all());
 
         adapter.notifyDataSetChanged();
     }
@@ -113,10 +149,10 @@ public class Home extends AppCompatActivity {
     }
 
     private void updateListView(){
-        //adapter = new AdapterMercadoria(this, controller.all());
-        //lsvMercadoria.setAdapter(adapter);
+        adapter = new AdapterMercadoria(this, controller.all());
+        lsvMercadoria.setAdapter(adapter);
 
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
 
     }
 
