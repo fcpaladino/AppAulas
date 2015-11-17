@@ -113,9 +113,9 @@ public class Cadastrar extends AppCompatActivity {
 
         controller.close();
 
-        Intent home = new Intent();
-        home.putExtra("id", id);
-        setResult(100, home);
+//        Intent home = new Intent();
+//        home.putExtra("id", id);
+//        setResult(100, home);
         finish();
 
     }
@@ -135,8 +135,8 @@ public class Cadastrar extends AppCompatActivity {
         controller.update(model);
         controller.close();
 
-        Intent home = new Intent();
-        setResult(200, home);
+//        Intent home = new Intent();
+//        setResult(200, home);
         finish();
     }
 

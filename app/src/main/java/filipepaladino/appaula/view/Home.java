@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +22,6 @@ import java.util.ArrayList;
 public class Home extends AppCompatActivity {
 
     private EditText edxSearch;
-
     private ListView lsvMercadoria;
     private AdapterMercadoria adapter;
     private ArrayList<ModelMercadoria> listamercadoria;
@@ -47,42 +45,25 @@ public class Home extends AppCompatActivity {
         edxSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
-                listamercadoria.clear();
-                listamercadoria.addAll(controller.search(edxSearch.getText().toString()));
-                adapter.notifyDataSetChanged();
-
+                searchMercadoria(s.toString());
             }
         });
 
-
-
-        /*edxSearch.setOnKeyListener(new EditText.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-
-                return false;
-            }
-        });*/
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        listamercadoria.clear();
-        listamercadoria.addAll(controller.all());
-
-        adapter.notifyDataSetChanged();
+        searchMercadoria("");
     }
 
     @Override
@@ -106,12 +87,10 @@ public class Home extends AppCompatActivity {
 
             case R.id.menu_cria_registro:
                 controller.createRegisters();
-                updateListView();
                 break;
 
             case R.id.menu_reset_table:
                 controller.reset();
-                updateListView();
                 break;
         }
 
@@ -120,7 +99,6 @@ public class Home extends AppCompatActivity {
 
     private void menuDeletarTodos() {
         if(controller.deleteAll()){
-            updateListView();
             Toast.makeText(Home.this, "Todos os itens removidos.", Toast.LENGTH_SHORT).show();
         }
     }
@@ -131,34 +109,11 @@ public class Home extends AppCompatActivity {
         startActivityForResult(cadastro, 100);
     }
 
-    public void onActivityResult(int cod, int status, Intent intent){
-        updateListView();
-
-        switch (status){
-            case 100:
-                Toast.makeText(Home.this, "Cadastrado com sucesso.", Toast.LENGTH_SHORT).show();
-                break;
-
-            case 200:
-                //int registro = intent.getExtras().getInt("id");
-                Toast.makeText(Home.this, "Atualizado com sucesso.", Toast.LENGTH_SHORT).show();
-                break;
-
-        }
-
+    private void searchMercadoria(String nome) {
+        listamercadoria.clear();
+        listamercadoria.addAll(controller.search(nome));
+        adapter.notifyDataSetChanged();
     }
 
-    private void updateListView(){
-        adapter = new AdapterMercadoria(this, controller.all());
-        lsvMercadoria.setAdapter(adapter);
 
-        //adapter.notifyDataSetChanged();
-
-    }
-
-    public void searchMercadoria(View view) {
-        listamercadoria = controller.search( edxSearch.getText().toString() );
-        adapter = new AdapterMercadoria(this, listamercadoria);
-        lsvMercadoria.setAdapter(adapter);
-    }
 }

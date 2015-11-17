@@ -93,7 +93,8 @@ public class ControllerMercadoria extends SQLiteOpenHelper {
         values.put("nome",      item.getNome());
         values.put("preco",     item.getPreco());
         values.put("descricao", item.getDescricao());
-        values.put("fabricante", item.getFabricante());
+        values.put("fabricante",item.getFabricante());
+        values.put("foto",      item.getFoto());
 
         db.update(TABLE, values, "id = ?", new String[]{String.valueOf(item.getId())});
         db.close();
