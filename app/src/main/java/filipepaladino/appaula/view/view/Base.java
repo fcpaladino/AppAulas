@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,10 +28,20 @@ import filipepaladino.appaula.R;
 
 public class Base extends AppCompatActivity {
 
+    private ImageView imvMapa;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base);
+
+        imvMapa = (ImageView)findViewById(R.id.imvMapa);
+
+        String imageUrl = "http://maps.googleapis.com/maps/api/staticmap?center=Rua+sergipe,+londrina&zoom=14&scale=1&size=600x300&maptype=roadmap&key=AIzaSyD7O7QDbeCBDCQwlrldLM5t2VQeqHH1Kjs&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0x0000ff%7Clabel:A%7CRua+sergipe,+londrina";
+
+
+
+
     }
 
     @Override

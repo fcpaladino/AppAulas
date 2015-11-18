@@ -28,10 +28,11 @@
         android:layout_height="wrap_content"
         android:text="Pesquisar"
         android:id="@+id/button"
-        android:layout_below="@+id/editText"
-        android:layout_centerHorizontal="true"
 
-        android:onClick="executarPesquisa"/>
+        android:onClick="executarPesquisa"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignRight="@+id/edxPesquisa"
+        android:layout_alignEnd="@+id/edxPesquisa" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,7 +40,19 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="[Resultado]"
         android:id="@+id/txvResultado"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/edxPesquisa"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/edxPesquisa"
+        android:layout_alignEnd="@+id/edxPesquisa" />
+
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:id="@+id/imvMapa"
+        android:layout_below="@+id/txvResultado"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="56dp" />
 
 </RelativeLayout>
