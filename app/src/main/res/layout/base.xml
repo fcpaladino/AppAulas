@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edxPesquisa"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -34,25 +34,37 @@
         android:layout_alignRight="@+id/edxPesquisa"
         android:layout_alignEnd="@+id/edxPesquisa" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="[Resultado]"
-        android:id="@+id/txvResultado"
-        android:layout_below="@+id/edxPesquisa"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/edxPesquisa"
-        android:layout_alignEnd="@+id/edxPesquisa" />
-
     <ImageView
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:id="@+id/imvMapa"
-        android:layout_below="@+id/txvResultado"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="56dp" />
+        android:layout_marginTop="56dp"
+        android:layout_below="@+id/edxPesquisa" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/txvLocation"
+        android:layout_alignTop="@+id/imvMapa"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/txvResultado"
+        android:layout_below="@+id/edxPesquisa"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
 
 </RelativeLayout>
